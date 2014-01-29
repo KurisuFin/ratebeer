@@ -9,14 +9,16 @@
 	<strong>Average rating:</strong> <%= @user.average_rating %>
 </p>
 
-<p>
-	<strong>Member of:</strong>
-	<ul>
-		<% @beer_clubs.each do |beer_club| %>
-			<li><%= link_to beer_club, beer_club %></li>
-		<% end %>
-	</ul>
-</p>
+<% unless @beer_clubs.empty? %>
+	<p>
+		<strong>Member of:</strong>
+		<ul>
+			<% @beer_clubs.each do |beer_club| %>
+				<li><%= link_to beer_club, beer_club %></li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>
 
 <table>
 	<thead>
@@ -31,11 +33,18 @@
 				<tr>
 					<td><%= rating.beer.name %></td>
 					<td><%= rating.score %></td>
-					<td><%= link_to 'Delete', rating, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+					<td>
+						<% if @user == current_user %>
+							<%= link_to 'Delete', rating, method: :delete, data: {confirm: 'Are you sure?'} %>
+						<% end %>
+					</td>
 				</tr>
 			<% end %>
 	</tbody>
 </table>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<% if current_user == @user %>
+	<%= link_to 'Edit', edit_user_path(@user) %> |
+	<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', users_path %>
