@@ -5,5 +5,37 @@
   <%= @user.username %>
 </p>
 
+<p>
+	<strong>Average rating:</strong> <%= @user.average_rating %>
+</p>
+
+<p>
+	<strong>Member of:</strong>
+	<ul>
+		<% @beer_clubs.each do |beer_club| %>
+			<li><%= link_to beer_club, beer_club %></li>
+		<% end %>
+	</ul>
+</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Rating</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+			<% @user.ratings.each do |rating| %>
+				<tr>
+					<td><%= rating.beer.name %></td>
+					<td><%= rating.score %></td>
+					<td><%= link_to 'Delete', rating, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+				</tr>
+			<% end %>
+	</tbody>
+</table>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
