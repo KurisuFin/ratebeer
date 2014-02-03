@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
 											 length: { minimum: 3,
 											 					 maximum: 15 }
 	validates :password, format: { with: /(?=.*[A-Z])(?=.*\d).{4,}/ }
+
+	def favorite_beer
+		return nil if ratings.empty?
+		ratings.order(score: :desc).limit(1).first.beer
+	end
 end
