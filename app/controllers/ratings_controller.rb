@@ -22,7 +22,7 @@ class RatingsController < ApplicationController
 
 	def destroy
 		rating = Rating.find(params[:id])
-		rating.delete if current_user == rating.user
+		rating.delete
 		redirect_to :back
 	end
 end
