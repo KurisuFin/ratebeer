@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe 'Beer' do
 	let!(:brewery) { FactoryGirl.create(:brewery, name:'Koff')}
+	let!(:user) { FactoryGirl.create(:user) }
+
+	before :each do
+		login(username:'Pekka', password:'Foobar1')
+	end
 
 	it 'is saved with valid name' do
 		visit new_beer_path
