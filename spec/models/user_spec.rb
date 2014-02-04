@@ -14,6 +14,7 @@ describe User do
 		expect(User.count).to eq(0)
 	end
 
+
 	describe 'with a proper password' do
 		let(:user){ FactoryGirl.create(:user) }
 
@@ -34,6 +35,7 @@ describe User do
 		end
 	end
 
+
 	it 'is not saved with too short password' do
 		user = User.create username:'Pekka', password:'A1b', password_confirmation:'A1b'
 
@@ -47,6 +49,7 @@ describe User do
 		expect(user).not_to be_valid
 		expect(User.count).to eq(0)
 	end
+
 
 	describe 'favorite beer' do
 		let(:user){ FactoryGirl.create(:user) }
@@ -73,6 +76,54 @@ describe User do
 			expect(user.favorite_beer).to eq(best)
 		end
 	end
+
+
+	describe 'favorite style' do
+		let(:user){ FactoryGirl.create(:user) }
+
+		it 'has method for determining one' do
+			user.should respond_to :favorite_style
+		end
+
+		it 'with ratings does not have a favorite style' do
+			expect(user.favorite_style).to eq(nil)
+		end
+
+		it 'is the only rated if only one rating' do
+			create_beer_with_rating_and_style(10, 'IPA', user)
+
+			expect(user.favorite_style).to eq('IPA')
+		end
+
+		it 'is the one with highest rating if maximum one for every style is rated' do
+			create_beer_with_rating_and_style(10, 'Weizen', user)
+			create_beer_with_rating_and_style(25, 'IPA', user)
+			create_beer_with_rating_and_style(7, 'Porter', user)
+
+			expect(user.favorite_style).to eq('IPA')
+		end
+
+		it 'is the one with highest average rating if several is rated' do
+#			create_beers_with_ratings_and_style(30, 2, 1, 'Weizen', user)
+#			create_beer_with_rating_and_style(25, 'IPA', user)
+#			create_beer_with_rating_and_style(7, 'Porter', user)
+#
+#			expect(user.favorite_style).to eq('IPA')
+		end
+	end
+end
+
+
+def create_beer_with_rating_and_style(score, style, user)
+	beer = FactoryGirl.create(:beer, style:style)
+	FactoryGirl.create(:rating, score:score, beer:beer, user:user)
+	beer
+end
+
+def create_beers_with_ratings_and_style(*scores, style, user)
+	scores.each do |score|
+		create_beer_with_rating_and_style(score, style, user)
+	end
 end
 
 
@@ -88,3 +139,24 @@ def create_beers_with_ratings(*scores, user)
 		create_beer_with_rating(score, user)
 	end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
