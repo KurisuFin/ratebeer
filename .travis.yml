@@ -9,6 +9,5 @@ script:
 deploy:
   provider: heroku
   app: ratebeer666
-  run: "rake db:migrate"
-  api_key:
-    secure: EtWLanv8Q5OQK0Idz3jLP0c2EYLQDVYT2aMCG4FrM9srH63fF9lltvApCgaTKWpP0EpO1+ObwicOGr6DbZ6hWwThV2CK1Lk5VpbYvOjBIHfnp4Mbf0Xk9V963j+UujhR09qICNfwuwAXPA16yhHicbyJ1MmcCBqXpiOcphxIExE=
+  api_key: 
+    secure: "Qx+ofVfP0OS14aT2cVOgAWWecD97ZaP8WHAk6KS6DcWmi645K1njrl91VPeVvoZyXmUEAVJYsp3/snX7iehkyweDBLB2xYHNYMdFwYh2DdwFOfG57s9gepee5kGKk0N+TZpIsRlK9YxkxCq5Wo717fB9kOkxC35W8EM0THeINR8="
