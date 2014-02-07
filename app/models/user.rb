@@ -20,38 +20,30 @@ class User < ActiveRecord::Base
 
 	def favorite_style
 		return nil if beers.empty?
-		ratings.order(score: :desc).limit(1).first.beer.style # Tämä kohta palauttaa väärin
 
-#		styles = get_list_of_styles
-#		ratings = Rating.where(user:user)
-#
-#		max = 0
-#
-#		styles.each do |style|
-#			sum = 0
-#
-#			ratings.each do |rating|
-#				if rating.beer.style == style
-#					sum += rating.score
-#				end
-#			end
-#
-#			max
-#		end
+		ratings = Rating.where(user:self).inject({}) do |result, rating|
+			result[rating.beer.style] = [] if result[rating.beer.style].nil?
+			result[rating.beer.style].push(rating.score)
+			result
+		end
 
-#		max_average = 0
-#		styles.each do |style|
-#			beers = Beer.where(style: style)
-#			max_average = beers.
-#		end
+		find_the_one_with_biggest_average ratings
+	end
+
+	def favorite_brewery
+		return nil if beers.empty?
+
+		ratings = Rating.where(user:self).inject({}) do |result, rating|
+			result[rating.beer.brewery] = [] if result[rating.beer.brewery].nil?
+			result[rating.beer.brewery].push(rating.score)
+			result
+		end
+
+		(find_the_one_with_biggest_average ratings).name
 	end
 
 	private
-		def get_list_of_styles
-			styles = []
-			Beer.all.each do |beer|
-				styles.push(beer.style)
-			end
-			styles.uniq
+		def find_the_one_with_biggest_average(ratings)
+			ratings.keys.max_by{ |key| ratings[key].sum / ratings[key].count }
 		end
 end

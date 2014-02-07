@@ -1,4 +1,5 @@
 require 'spec_helper'
+include OwnTestHelper
 
 describe 'Beer' do
 	let!(:brewery) { FactoryGirl.create(:brewery, name:'Koff')}
@@ -20,6 +21,8 @@ describe 'Beer' do
 	end
 
 	it 'is not saved without valid name' do
+		login(username:'Pekka', password:'Foobar1')
+
 		visit new_beer_path
 		select('Lager', from:'beer_style')
 		select('Koff', from:'beer_brewery_id')
