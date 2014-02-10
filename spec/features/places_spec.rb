@@ -3,11 +3,15 @@ require 'spec_helper'
 describe 'Places' do
 
 	it 'if none is returned by the API, notice is shown at the page' do
+		BeermappingApi.stub(:places_in).with('Heaven').and_return(
+				[]
+		)
+
 		visit places_path
-		fill_in('city', with: 'Kumpula')
+		fill_in('city', with: 'Heaven')
 		click_button 'Search'
 
-		expect(page).to have_content 'No locations in Kumpula'
+		expect(page).to have_content 'No locations in Heaven'
 	end
 
 	it 'if one is returned by the API, it is shown at the page' do
