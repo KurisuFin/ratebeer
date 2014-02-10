@@ -11,8 +11,8 @@ group :production do
 end
 
 gem 'debugger', group: [:development, :test]
-
 gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'httparty'
 
 group :development, :test do
    gem 'rspec-rails', '~> 2.14.1'
