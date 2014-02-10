@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 		ratings.order(score: :desc).limit(1).first.beer
 	end
 
+	def is_member_of(beer_club)
+		BeerClub.find(beer_club).members.exists?(self)
+	end
+
 	def favorite_style
 		return nil if beers.empty?
 

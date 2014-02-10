@@ -25,9 +25,11 @@
 </p>
 
 <% if current_user %>
-	<%= form_for(@membership) do |f| %>
-		<%= f.hidden_field :beer_club_id %>
-		<%= f.submit value:'Join the club' %>
+	<% unless current_user.is_member_of(@beer_club) %>
+		<%= form_for(@membership) do |f| %>
+			<%= f.hidden_field :beer_club_id %>
+			<%= f.submit value:'Join the club' %>
+		<% end %>
 	<% end %>
 
 	<%= link_to 'Edit', edit_beer_club_path(@beer_club) %> |
