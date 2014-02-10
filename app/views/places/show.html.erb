@@ -1,0 +1,12 @@
+<h2><%= @place.name %></h2>
+
+<div id="address">
+	<p><%= @place.street %></p>
+
+	<p>
+		<%= @place.zip %>
+		<%= @place.city %>
+	</p>
+</div>
+
+<iframe class="map" src="http://beermapping.com/maps/blogproxy.php?locid=12409&d=1&type=norm"></iframe>
