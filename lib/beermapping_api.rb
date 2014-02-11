@@ -10,7 +10,7 @@ class BeermappingApi
 	end
 
 	def self.fetch_place(place_id)
-		url = "http://beermapping.com/webservice/locquery/98ac8631b7531b008be1bba058120aa7/"
+		url = "http://beermapping.com/webservice/locquery/#{key}/"
 
 		response = HTTParty.get "#{url}#{place_id}"
 		place_info = response.parsed_response['bmp_locations']['location']
@@ -24,7 +24,7 @@ class BeermappingApi
 	private
 
 	def self.fetch_places_in(city)
-		url = "http://beermapping.com/webservice/loccity/98ac8631b7531b008be1bba058120aa7/"
+		url = "http://beermapping.com/webservice/loccity/#{key}/"
 
 		response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
 
@@ -47,6 +47,6 @@ class BeermappingApi
 	end
 
 	def self.key
-		Settings.beermapping_apikey
+		ENV['APIKEY'] || Settings.beermapping_apikey
 	end
 end
