@@ -47,6 +47,7 @@ class User < ActiveRecord::Base
 	end
 
 	private
+
 		def find_the_one_with_biggest_average(ratings)
 			ratings.keys.max_by{ |key| ratings[key].sum / ratings[key].count }
 		end
