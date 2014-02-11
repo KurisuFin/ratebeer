@@ -27,7 +27,16 @@ class BeermappingApi
 		url = "http://beermapping.com/webservice/loccity/#{key}/"
 
 		response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
-		places = response.parsed_response['bmp_locations']['location']
+
+		puts "DERP response: #{response}"
+		parsed_response = response.parsed_response
+		puts "HERP parsed_response: #{parsed_response}"
+		bmp_locations = parsed_response['bmp_locations']
+		puts "HURP bmp_locations: #{bmp_locations}"
+		places = bmp_locations['location']
+		puts "DURP places: #{places}"
+
+#		places = response.parsed_response['bmp_locations']['location']
 
 		return [] if places.is_a?(Hash) and places['id'].nil?
 
