@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Text</th>
+      <th>Name</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +13,7 @@
   <tbody>
     <% @styles.each do |style| %>
       <tr>
-        <td><%= style.text %></td>
+        <td><%= style.name %></td>
         <td><%= link_to 'Show', style %></td>
         <td><%= link_to 'Edit', edit_style_path(style) %></td>
         <td><%= link_to 'Destroy', style, method: :delete, data: { confirm: 'Are you sure?' } %></td>
