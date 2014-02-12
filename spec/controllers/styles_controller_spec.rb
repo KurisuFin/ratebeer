@@ -23,7 +23,7 @@ describe StylesController do
   # This should return the minimal set of attributes required to create a valid
   # Style. As you add validations to Style, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "text" => "MyString" } }
+  let(:valid_attributes) { { "name" => "MyString" } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -85,14 +85,14 @@ describe StylesController do
       it "assigns a newly created but unsaved style as @style" do
         # Trigger the behavior that occurs when invalid params are submitted
         Style.any_instance.stub(:save).and_return(false)
-        post :create, {:style => { "text" => "invalid value" }}, valid_session
+        post :create, {:style => { "name" => "invalid value" }}, valid_session
         assigns(:style).should be_a_new(Style)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Style.any_instance.stub(:save).and_return(false)
-        post :create, {:style => { "text" => "invalid value" }}, valid_session
+        post :create, {:style => { "name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -106,8 +106,8 @@ describe StylesController do
         # specifies that the Style created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Style.any_instance.should_receive(:update).with({ "text" => "MyString" })
-        put :update, {:id => style.to_param, :style => { "text" => "MyString" }}, valid_session
+        Style.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        put :update, {:id => style.to_param, :style => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested style as @style" do
@@ -128,7 +128,7 @@ describe StylesController do
         style = Style.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Style.any_instance.stub(:save).and_return(false)
-        put :update, {:id => style.to_param, :style => { "text" => "invalid value" }}, valid_session
+        put :update, {:id => style.to_param, :style => { "name" => "invalid value" }}, valid_session
         assigns(:style).should eq(style)
       end
 
@@ -136,7 +136,7 @@ describe StylesController do
         style = Style.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Style.any_instance.stub(:save).and_return(false)
-        put :update, {:id => style.to_param, :style => { "text" => "invalid value" }}, valid_session
+        put :update, {:id => style.to_param, :style => { "name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
