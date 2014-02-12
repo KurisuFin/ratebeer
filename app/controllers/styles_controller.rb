@@ -10,6 +10,7 @@ class StylesController < ApplicationController
   # GET /styles/1
   # GET /styles/1.json
   def show
+		@beers = Beer.where(style:@style)
   end
 
   # GET /styles/new
@@ -69,6 +70,6 @@ class StylesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def style_params
-      params.require(:style).permit(:name)
+      params.require(:style).permit(:name, :description)
     end
 end
