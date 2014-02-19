@@ -11,3 +11,6 @@ deploy:
   app: ratebeer666
   api_key: 
     secure: "Qx+ofVfP0OS14aT2cVOgAWWecD97ZaP8WHAk6KS6DcWmi645K1njrl91VPeVvoZyXmUEAVJYsp3/snX7iehkyweDBLB2xYHNYMdFwYh2DdwFOfG57s9gepee5kGKk0N+TZpIsRlK9YxkxCq5Wo717fB9kOkxC35W8EM0THeINR8="
+before_install:
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
