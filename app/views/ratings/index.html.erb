@@ -11,7 +11,7 @@
 	<tbody>
 		<% @ratings.each do |rating| %>
 			<tr>
-				<td><%= rating.beer.name %></td>
+				<td><%= link_to rating.beer.name, beer_path(rating.beer) %></td>
 				<td><%= rating.score %></td>
 				<td><%= link_to rating.user.username %></td>
 			</tr>
@@ -19,4 +19,4 @@
 	</tbody>
 </table>
 
-<p><%= link_to 'New rating', new_rating_path %></p>
+<p><%= link_to 'New rating', new_rating_path, class:'btn btn-primary' %></p>
