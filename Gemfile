@@ -14,6 +14,7 @@ gem 'byebug', group: [:development, :test]
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'httparty'
 gem 'rails-settings-cached', '0.3.1'
+gem 'jquery-turbolinks'
 
 group :development, :test do
    gem 'rspec-rails', '~> 2.14.1'

@@ -19,6 +19,10 @@ Ratebeer::Application.routes.draw do
 	resources :places, only: [:index, :show]
 	post 'places', to: 'places#search'
 
+	get 'beerlist', to: 'beers#list'
+	get 'ngbeerlist', to: 'beers#nglist'
+	get 'brewerylist', to: 'breweries#list'
+
 
 #	get 'ratings', to: 'ratings#index'
 #	get 'ratings/new', to: 'ratings#new'

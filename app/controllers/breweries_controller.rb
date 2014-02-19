@@ -13,7 +13,10 @@ class BreweriesController < ApplicationController
 			when 'name' then @breweries.sort_by!{ |b| b.name }
 			when 'year' then @breweries.sort_by!{ |b| b.year }
 		end
-  end
+	end
+
+	def list
+	end
 
   # GET /breweries/1
   # GET /breweries/1.json

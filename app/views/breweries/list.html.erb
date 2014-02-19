@@ -1,0 +1,20 @@
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+
+<h2>Breweries</h2>
+
+<div ng-app ng-controller="BreweriesController">
+	<table>
+		<thead>
+			<th><a ng-click="click('name')">Name</a></th>
+			<th><a ng-click="click('year')">Year</a></th>
+			<th><a ng-click="click('beersCount')">Number of beers</a></th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="brewery in breweries | orderBy:order">
+				<td>{{brewery.name}}</td>
+				<td>{{brewery.year}}</td>
+				<td>{{brewery.beersCount}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
