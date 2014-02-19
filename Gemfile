@@ -10,7 +10,7 @@ group :production do
    gem 'rails_12factor' 
 end
 
-gem 'debugger', group: [:development, :test]
+gem 'byebug', group: [:development, :test]
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'httparty'
 gem 'rails-settings-cached', '0.3.1'

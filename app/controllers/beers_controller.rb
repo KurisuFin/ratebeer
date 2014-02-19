@@ -7,6 +7,14 @@ class BeersController < ApplicationController
 	# GET /beers.json
 	def index
 		@beers = Beer.all
+
+		order = params[:order] || 'name'
+
+		case order
+			when 'name' then @beers.sort_by!{ |b| b.name }
+			when 'style' then @beers.sort_by!{ |b| b.name }
+			when 'brewery' then @beers.sort_by!{ |b| b.brewery.name }
+		end
 	end
 
 	# GET /beers/1
@@ -29,7 +37,7 @@ class BeersController < ApplicationController
 	# POST /beers.json
 	def create
 		@beer = Beer.new(beer_params)
-		raise
+
 		respond_to do |format|
 			if @beer.save
 				format.html { redirect_to beers_path, notice: 'Beer was successfully created.' }

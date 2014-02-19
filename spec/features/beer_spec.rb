@@ -2,7 +2,8 @@ require 'spec_helper'
 include OwnTestHelper
 
 describe 'Beer' do
-	let!(:brewery) { FactoryGirl.create(:brewery, name:'Koff')}
+	let!(:brewery) { FactoryGirl.create(:brewery, name:'Koff') }
+	let!(:style) { FactoryGirl.create(:style) }
 	let!(:user) { FactoryGirl.create(:user) }
 
 	before :each do
@@ -12,7 +13,7 @@ describe 'Beer' do
 	it 'is saved with valid name' do
 		visit new_beer_path
 		fill_in 'beer_name', with:'UusiKalja'
-		select('Lager', from:'beer_style')
+		select('Lager', from:'beer_style_id')
 		select('Koff', from:'beer_brewery_id')
 
 		expect {
@@ -24,7 +25,7 @@ describe 'Beer' do
 		login(username:'Pekka', password:'Foobar1')
 
 		visit new_beer_path
-		select('Lager', from:'beer_style')
+		select('Lager', from:'beer_style_id')
 		select('Koff', from:'beer_brewery_id')
 
 		click_button 'Create Beer'

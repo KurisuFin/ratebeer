@@ -16,9 +16,12 @@ describe 'User page' do
 		let!(:brewery1){ FactoryGirl.create(:brewery, name:'Panimo 1') }
 		let!(:brewery2){ FactoryGirl.create(:brewery, name:'Panimo 2') }
 		let!(:brewery3){ FactoryGirl.create(:brewery, name:'Panimo 3') }
-		let!(:beer1){ FactoryGirl.create(:beer, brewery:brewery1, style:'Lager', name:'LagerBeer') }
-		let!(:beer2){ FactoryGirl.create(:beer, brewery:brewery2, style:'IPA', name:'IPA-beer') }
-		let!(:beer3){ FactoryGirl.create(:beer, brewery:brewery3, style:'Porter', name:'PorterBeer') }
+		let!(:style1){ FactoryGirl.create(:style, name:'Lager') }
+		let!(:style2){ FactoryGirl.create(:style, name:'IPA') }
+		let!(:style3){ FactoryGirl.create(:style, name:'Porter') }
+		let!(:beer1){ FactoryGirl.create(:beer, brewery:brewery1, style:style1, name:'LagerBeer') }
+		let!(:beer2){ FactoryGirl.create(:beer, brewery:brewery2, style:style2, name:'IPA-beer') }
+		let!(:beer3){ FactoryGirl.create(:beer, brewery:brewery3, style:style3, name:'PorterBeer') }
 
 		before :each do
 			FactoryGirl.create(:rating, user:user, beer:beer1, score:20)
