@@ -1,33 +1,33 @@
 source 'https://rubygems.org'
 
 
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'bootstrap-sass'
+gem 'rails_layout', group: [:development]
 
 group :production do
    gem 'pg'
    gem 'rails_12factor' 
 end
 
-gem 'byebug', group: [:development, :test]
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'httparty'
 gem 'rails-settings-cached', '0.3.1'
 gem 'jquery-turbolinks'
 
 group :development, :test do
-   gem 'rspec-rails', '~> 2.14.1'
+	gem 'byebug'
+	gem 'sqlite3'
+	gem 'rspec-rails', '~> 2.14.1'
 end
 
 group :test do
-   gem 'factory_girl_rails'
-   gem 'capybara'
-   gem 'launchy'
-   gem 'simplecov', require: false
-   gem 'webmock'
-   gem 'selenium-webdriver'
-   gem 'database_cleaner', '< 1.1.0'
+	gem 'factory_girl_rails'
+	gem 'capybara'
+	gem 'launchy'
+	gem 'simplecov', require: false
+	gem 'webmock'
+	gem 'selenium-webdriver'
+	gem 'database_cleaner', '< 1.1.0'
 end
 
 
