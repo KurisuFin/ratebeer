@@ -57,4 +57,5 @@ describe 'Beerlist page' do
 		find('table').find('tr:nth-child(3)').should have_content('Koff')
 		find('table').find('tr:nth-child(4)').should have_content('Schlenkerla')
 	end
+	
 end
