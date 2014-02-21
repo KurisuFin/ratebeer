@@ -1,23 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h2>
-	<%= @brewery.name %>
-	<% unless @brewery.active %>
-		<span class="label label-info">retired</span>
-	<% end %>
-</h2>
+<% cache @brewery do %>
+	<h2>
+		<%= @brewery.name %>
+		<% unless @brewery.active %>
+			<span class="label label-info">retired</span>
+		<% end %>
+	</h2>
 
-<p><i>Established at <%= @brewery.year %></i></p>
+	<p><i>Established at <%= @brewery.year %></i></p>
 
-<p>Number of beers: <%= @brewery.beers.count %></p>
+	<p>Number of beers: <%= @brewery.beers.count %></p>
 
-<%= render 'layouts/beer_list', iterator: @brewery %>
+	<%= render 'layouts/beer_list', iterator: @brewery %>
 
-<p>
-	<% unless @brewery.ratings.empty? %>
-		Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %>
-	<% end %>
-</p>
+	<p>
+		<% unless @brewery.ratings.empty? %>
+			Has <%= pluralize(@brewery.ratings.count, 'rating') %>, average <%= @brewery.average_rating %>
+		<% end %>
+	</p>
+<% end %>
 
 
 <p><%= edit_and_destroy_buttons(@brewery) %></p>

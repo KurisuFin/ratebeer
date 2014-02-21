@@ -5,7 +5,7 @@ class Style < ActiveRecord::Base
 	has_many :ratings, through: :beers
 
 	def self.top(n)
-		sorted = Style.all.sort_by{ |s| -(s.average_rating || 0) }
+		sorted = Style.includes(:ratings).all.sort_by{ |s| -(s.average_rating || 0) }
 		sorted.take(n)
 	end
 

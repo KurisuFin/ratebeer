@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	validates :password, format: { with: /(?=.*[A-Z])(?=.*\d).{4,}/ }
 
 	def self.most_ratings(n)
-		sorted = User.all.sort_by{ |u| -(u.ratings.count) }
+		sorted = User.includes(:ratings).all.sort_by{ |u| -(u.ratings.count) }
 		sorted.take(n)
 	end
 

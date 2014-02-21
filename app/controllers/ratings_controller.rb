@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
 		@top_breweries = Brewery.top 3
 		@top_styles = Style.top 3
 		@users_with_most_ratings = User.most_ratings 3
-		@all_ratings = Rating.all
+		@all_ratings = Rating.includes(:user, :beer).all
 		@recent_ratings = Rating.recent
 	end
 

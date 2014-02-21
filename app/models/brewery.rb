@@ -30,7 +30,7 @@ class Brewery < ActiveRecord::Base
 	end
 
 	def self.top(n)
-		sorted = Brewery.all.sort_by{ |b| -(b.average_rating || 0) }
+		sorted = Brewery.includes(:ratings).all.sort_by{ |b| -(b.average_rating || 0) }
 		sorted.take(n)
 	end
 end
