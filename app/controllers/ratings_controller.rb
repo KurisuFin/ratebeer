@@ -2,10 +2,12 @@ class RatingsController < ApplicationController
 	before_action 'ensure_that_logged_in', except: [:index]
 
 	def index
-		@top_beers = Beer.top 3
-		@top_breweries = Brewery.top 3
-		@top_styles = Style.top 3
-		@users_with_most_ratings = User.most_ratings 3
+		# When top lists are calculated, values are used next 10 minutes
+		@top_beers = Rails.cache.fetch('beer top 3', expires_in: 10.minutes){ Beer.top 3 }
+		@top_breweries = Rails.cache.fetch('brewery top 3', expires_in: 10.minutes){ Brewery.top 3 }
+		@top_styles = Rails.cache.fetch('styles top 3', expires_in: 10.minutes){ Style.top 3 }
+		@users_with_most_ratings = Rails.cache.fetch('users with most ratings', expires_in: 10.minutes){ User.most_ratings 3 }
+
 		@all_ratings = Rating.includes(:user, :beer).all
 		@recent_ratings = Rating.recent
 	end
