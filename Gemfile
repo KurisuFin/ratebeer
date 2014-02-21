@@ -13,6 +13,7 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'httparty'
 gem 'rails-settings-cached', '0.3.1'
 gem 'jquery-turbolinks'
+gem 'rack-mini-profiler', group: [:development]
 
 group :development, :test do
 	gem 'byebug'
