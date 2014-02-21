@@ -6,8 +6,10 @@ class Brewery < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates :year, numericality: { only_integer: true }
-
 	validate :inspect_year
+
+	scope :active, -> { where active:true }
+	scope :retired, -> { where active:[nil, false] }
 
 	def inspect_year
 		if year < 1042 || year > Date.today.year
@@ -25,5 +27,10 @@ class Brewery < ActiveRecord::Base
 	def restart
 		self.year = 2014
 		puts "Changed year to #{year}"
+	end
+
+	def self.top(n)
+		sorted = Brewery.all.sort_by{ |b| -(b.average_rating || 0) }
+		sorted.take(n)
 	end
 end

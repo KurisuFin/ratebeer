@@ -1,0 +1,16 @@
+<table class="table table-hover">
+	<thead>
+	<tr>
+		<th>Brewery</th>
+		<th>Average</th>
+	</tr>
+	</thead>
+	<tbody>
+	<% iterator.each do |it| %>
+		<tr>
+			<td><%= link_to it.name, it %></td>
+			<td><%= it.average_rating %></td>
+		</tr>
+	<% end %>
+	</tbody>
+</table>
