@@ -23,13 +23,19 @@
 	<thead>
 		<tr>
 			<th>User</th>
-			<th>Ratings count</th>
+			<th>Favorite Beer</th>
+			<th>Favorite brewery</th>
+			<th>Favorite style</th>
+			<th>Ratings given</th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @users_with_most_ratings.each do |user| %>
 			<tr>
 				<td><%= link_to user.username, user %></td>
+				<td><%= user.favorite_beer %></td>
+				<td><%= user.favorite_brewery %></td>
+				<td><%= user.favorite_style %></td>
 				<td><%= user.ratings.count %></td>
 			</tr>
 		<% end %>

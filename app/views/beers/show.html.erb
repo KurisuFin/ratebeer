@@ -31,9 +31,6 @@
 		Score: <%= f.number_field :score %>
 		<%= f.submit class:'btn btn-primary' %>
 	<% end %>
-
-	<%= link_to 'Edit', edit_beer_path(@beer) %> |
 <% end %>
 
-
-<%= link_to 'Back', beers_path %>
+<p><%= edit_and_destroy_buttons(@beer) %></p>

@@ -47,5 +47,4 @@
 	<%= @user.favorite_brewery %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p><%= edit_and_destroy_buttons(@user) %></p>

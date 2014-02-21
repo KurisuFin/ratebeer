@@ -11,11 +11,7 @@
 
 <p>Number of beers: <%= @brewery.beers.count %></p>
 
-<p>
-	<% @brewery.beers.each do |beer| %>
-		<%= link_to beer.name, beer %>
-	<% end %>
-</p>
+<%= render 'layouts/beer_list', iterator: @brewery %>
 
 <p>
 	<% unless @brewery.ratings.empty? %>
@@ -24,7 +20,4 @@
 </p>
 
 
-<% if current_user %>
-	<%= link_to 'Edit', edit_brewery_path(@brewery) %> |
-<% end %>
-<%= link_to 'Back', breweries_path %>
+<p><%= edit_and_destroy_buttons(@brewery) %></p>

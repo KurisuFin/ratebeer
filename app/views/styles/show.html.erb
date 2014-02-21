@@ -6,12 +6,7 @@
 	<%= @style.description %>
 </p>
 
-<ul>
-	<strong>Beers:</strong>
-	<% @beers.each do |beer| %>
-		<li><%= link_to beer.name, beer %></li>
-	<% end %>
-</ul>
+<h2>Beers:</h2>
+<%= render 'layouts/beer_list', iterator: @style %>
 
-<%= link_to 'Edit', edit_style_path(@style) %> |
-<%= link_to 'Back', styles_path %>
+<p><%= edit_and_destroy_buttons(@style) %></p>
