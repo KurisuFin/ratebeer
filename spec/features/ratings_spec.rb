@@ -13,7 +13,7 @@ describe 'Rating' do
 
 	it 'when given, is registered to the beer and user who is logged in' do
 		visit new_rating_path
-		select('Iso 3 (Koff)', from:'rating[beer_id]')
+		select('Iso 3', from:'rating[beer_id]')
 		fill_in('rating[score]', with:'15')
 
 		expect{
